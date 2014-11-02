@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>ExperimentBackbone</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor.css">
+
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+  </head>
+  <body>
+
+    <div class="cars-list">
+      <h1>A list of Cars</h1>
+      <form id="addCarForm">
+          <span> Car Name: </span><input type="text" id="name"/>
+          <span> Car Make: </span><input type="text" id="make" />
+          <span> Car Model: </span><input type="text" id="model"/>
+          <span> Car Image Source: </span><input type="text" id="imgSrc"/>
+          <button>Add the Car</button>
+      </form>
+      <ul id="coolCars">
+      </ul>
+    </div>
+
+    <script type="text/template" id="carTemplate">
+    <li id="<%= _id %>">
+      <ul class="carDetails">
+        <li><img src="<%= imgSrc %>"></li>
+        <li>Name: <%= name %></li>
+        <li>Make: <%= make %></li>
+        <li>Model: <%= model %></li>
+      </ul>
+        <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
+      </li>
+    </script>
+    <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/main.js"></script>
+</body>
+</html>
