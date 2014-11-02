@@ -23,24 +23,35 @@
   </head>
   <body>
 
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Normalize CSS</li>
-        <li>Sass</li>
-        <li>Modernizr</li>
-        <li>Bourbon & Neat</li>
-        <li>UnderscoreJS</li>
+    <div class="cars-list">
+      <h1>A list of Cars</h1>
+      <form id="addCarForm">
+          <span> Car Name: </span><input type="text" id="name"/>
+          <span> Car Make: </span><input type="text" id="make" />
+          <span> Car Model: </span><input type="text" id="model"/>
+          <span> Car Image Source: </span><input type="text" id="imgSrc"/>
+          <button>Add the Car</button>
+      </form>
+      <ul id="coolCars">
       </ul>
-      <p>Don't forget to update your readme file!!</p>
     </div>
 
+    <script type="text/template" id="carTemplate">
+    <li>
+      <ul class="carDetails">
+        <li><img src="<%= imgSrc %>"></li>
+        <li>Name: <%= name %></li>
+        <li>Make: <%= make %></li>
+        <li>Model: <%= model %></li>
+        </ul>
+        <button id="removeCar">x<button>
+      </li>
+    </script>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/backbone/backbone.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
