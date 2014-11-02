@@ -37,14 +37,14 @@
     </div>
 
     <script type="text/template" id="carTemplate">
-    <li>
+    <li id="<%= _id %>">
       <ul class="carDetails">
         <li><img src="<%= imgSrc %>"></li>
         <li>Name: <%= name %></li>
         <li>Make: <%= make %></li>
         <li>Model: <%= model %></li>
-        </ul>
-        <button id="removeCar">x<button>
+      </ul>
+        <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
       </li>
     </script>
     <!-- build:js scripts/vendor.js -->

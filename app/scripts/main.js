@@ -1,7 +1,9 @@
 //car template
 var carTemplate = $('#carTemplate').html();
 var carRenderer = _.template(carTemplate);
-
+//=========================================
+var carList;
+var myServer = "http://tiy-atl-fe-server.herokuapp.com/collections/thomasbbcars";
 var Car = Backbone.Model.extend({
 
   defaults: {
@@ -20,26 +22,19 @@ var Car = Backbone.Model.extend({
 
 var Cars = Backbone.Collection.extend ({
   model: Car,
-  url: "http://tiy-atl-fe-server.herokuapp.com/collections/thomasbbcars"
+  url: myServer
 });
 
 var allCars = new Cars();
 allCars.fetch();
-console.log(allCars);
 
 //add all the current cars to the list(can't use fetch "lazily" so use a regular ajax get call)
-$.ajax({
-  type: "GET",
-  url:"http://tiy-atl-fe-server.herokuapp.com/collections/thomasbbcars",
-  data: JSON
-}).done(function(data){
-  console.log(data);
-  data.forEach(function(carObject){
-    console.log(carObject);
-    //$('#coolCars').append(carRenderer(carObject));
-  });
-
-});
+$.getJSON(myServer).done(function(data){
+          carList = data;
+          _.each(carList, function(car){
+              $('#coolCars').append(carRenderer(car));
+          });
+        });
 
 $('#addCarForm').on('submit', function(e) {
   //Prevent the default action of our form submission
@@ -80,4 +75,21 @@ $('#addCarForm').on('submit', function(e) {
   else {
     alert("Enter all values for the car");
   }
+});
+
+//delete car from the list
+var delete_car;
+
+$('#coolCars').on('click', 'button', function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    var myID = $(this).attr('id');
+
+    delete_car = allCars.findWhere({ _id: myID });
+    console.log(delete_car);
+    delete_car.destroy(); //not working
+
+    $(this).parent().remove();
+
 });
