@@ -1,13 +1,20 @@
-var CarView = Backbone.View.extend({
+App.Views.CarView = Backbone.View.extend({
 
   tagName: 'li',
   className: 'car',
 
-  initialize: function (options) {
-    this.render(options.collection);
+  events: {
+    'click button' : 'deleteCar'
+  }
+
+  initialize: function () {
+    this.render(App.all_Cars);
+
+    //update our view when adding/deleting a car
+    App.all_Cars.on('sync', this.render, this);
   },
 
-  render: function (collection) {
+  render: function () {
     //Binding 'this' to 'self' for use in nexted functions/callbacks
     var self = this;
 
@@ -16,7 +23,7 @@ var CarView = Backbone.View.extend({
     var rendered = _.template(template);
 
     // Iterating over our models
-    _.each(collection.models, function(car) {
+    _.each(App.all_Cars.models, function(car) {
       //Each iteration.. appending the data to our element
       // that Backbone created
       self.$el.append(rendered(car.attributes));
@@ -27,6 +34,16 @@ var CarView = Backbone.View.extend({
     $('#coolCars').html(this.el);
 
     return this;
+  },
+
+  deleteCar: function(e) {
+    e.preventDefault();
+
+    var id = $(e.target).attr('id');
+
+    var deleteCar = App.all_Cars.get(id);
+
+    deleteCar.destroy();
   }
 
 

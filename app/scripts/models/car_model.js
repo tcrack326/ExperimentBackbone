@@ -1,4 +1,4 @@
-var Car = Backbone.Model.extend({
+App.Models.Car = Backbone.Model.extend({
 
   defaults: {
     name: '',
