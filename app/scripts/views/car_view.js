@@ -1,50 +1,60 @@
-App.Views.CarView = Backbone.View.extend({
+(function (){
 
-  tagName: 'li',
-  className: 'car',
+  App.Views.CarView = Backbone.View.extend({
 
-  events: {
-    'click button' : 'deleteCar'
-  }
+    tagName: 'ul',
+    className: 'cars',
 
-  initialize: function () {
-    this.render(App.all_Cars);
+    events: {
+      'click button' : 'deleteCar'
+    },
 
-    //update our view when adding/deleting a car
-    App.all_Cars.on('sync', this.render, this);
-  },
+    initialize: function () {
+      this.render(App.all_Cars);
 
-  render: function () {
-    //Binding 'this' to 'self' for use in nexted functions/callbacks
-    var self = this;
+      //update our view when adding/deleting a car
+      App.all_Cars.on('sync', this.render, this);
+      App.all_Cars.on('destroy', this.render, this);
 
-    //Straight up underscore template
-    var template = $('#carTemplate').html();
-    var rendered = _.template(template);
+      //Take the data and append it into a specific element on my page
+      $('#carContainer').append(this.el);
+    },
 
-    // Iterating over our models
-    _.each(App.all_Cars.models, function(car) {
-      //Each iteration.. appending the data to our element
-      // that Backbone created
-      self.$el.append(rendered(car.attributes));
+    render: function () {
+      //Binding 'this' to 'self' for use in nexted functions/callbacks
+      var self = this;
 
-    });
+      //Straight up underscore template
+      var template = $('#cars').html();
+      var rendered = _.template(template);
 
-    //Take the data and append it into a specific element on my page
-    $('#coolCars').html(this.el);
+        //Clear our El
+        this.$el.empty();
 
-    return this;
-  },
+      // Iterating over our models
+      _.each(App.all_Cars.models, function(car) {
+        //Each iteration.. appending the data to our element
+        // that Backbone created
+        self.$el.append(rendered(car.attributes));
 
-  deleteCar: function(e) {
-    e.preventDefault();
-
-    var id = $(e.target).attr('id');
-
-    var deleteCar = App.all_Cars.get(id);
-
-    deleteCar.destroy();
-  }
+      });
 
 
-});
+
+      return this;
+    },
+
+    deleteCar: function(e) {
+      e.preventDefault();
+
+      var id = $(e.target).attr('id');
+
+      var deleteCar = App.all_Cars.get(id);
+
+      deleteCar.destroy();
+    }
+
+
+  });
+
+}());

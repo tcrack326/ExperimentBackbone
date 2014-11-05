@@ -5,7 +5,7 @@
     el: '#carAdder',
 
     events: {
-      'submit #carAdd' : 'addNewCar'
+      'click button' : 'addNewCar'
     },
 
     initialize: function(){
@@ -13,7 +13,7 @@
     },
 
     render: function() {
-      form_html = $('#addCarForm').html()
+      form_html = $('#addCars').html();
       this.$el.html(form_html);
 
     },
@@ -31,7 +31,7 @@
         name: car_name,
         make: car_make,
         model: car_model,
-        imageSrc: car_image
+        imgSrc: car_image
       });
 
       //Add to our collection and save to our server
