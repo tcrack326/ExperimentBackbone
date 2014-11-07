@@ -9,11 +9,11 @@
 
     routes: {
       '' : 'home',
-      'edit/:id' : 'editCar'
+      'edit/:id' : 'editCar',
+      'add' : 'addCar'
     },
 
     home: function () {
-      new App.Views.CarsAdd();
       new App.Views.CarView({ collection: App.all_Cars });
     },
 
@@ -22,6 +22,10 @@
       var c = App.all_Cars.get(id);
 
       new App.Views.SingleCar({ car: c });
+    },
+
+    addCar: function() {
+      new App.Views.AddCar();
     }
 
   });

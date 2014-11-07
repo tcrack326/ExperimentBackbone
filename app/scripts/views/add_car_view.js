@@ -1,8 +1,6 @@
 (function () {
 
-  App.Views.CarsAdd = Backbone.View.extend({
-
-    el: '#carAdder',
+  App.Views.AddCar = Backbone.View.extend({
 
     events: {
       'click button' : 'addNewCar'
@@ -10,11 +8,13 @@
 
     initialize: function(){
       this.render();
+
+      $('#carContainer').html(this.$el);
     },
 
     render: function() {
-      form_html = $('#addCars').html();
-      this.$el.html(form_html);
+      var form = $('#addCars').html();
+      this.$el.html(form);
 
     },
 
@@ -34,8 +34,15 @@
         imgSrc: car_image
       });
 
-      //Add to our collection and save to our server
-      App.all_Cars.add(car).save();
+      //Save and route back to home
+      App.all_Cars.add(car).save(null,
+
+        {
+          success: function () {
+            App.router.navigate('', {trigger: true});
+        }
+
+        });
 
       $('#addCarForm')[0].reset();
     }
