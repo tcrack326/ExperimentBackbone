@@ -5,7 +5,8 @@ App.Models.Car = Backbone.Model.extend({
     make: '',
     model: '',
     imgSrc: '',
-    description: ''
+    description: '',
+    topSpeed: ''
   },
 
   idAttribute: '_id',

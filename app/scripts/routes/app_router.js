@@ -10,11 +10,12 @@
     routes: {
       '' : 'home',
       'edit/:id' : 'editCar',
-      'add' : 'addCar'
+      'add' : 'addCar',
+      'sort/:sortByVar' : 'home'
     },
 
-    home: function () {
-      new App.Views.CarView({ collection: App.all_Cars });
+    home: function (sortByVar) {
+      new App.Views.CarView({ collection: App.all_Cars, sort: sortByVar });
     },
 
     editCar: function (id) {

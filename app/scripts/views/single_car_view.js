@@ -38,14 +38,15 @@
         name: $('#update_name').val(),
         make: $('#update_make').val(),
         model: $('#update_model').val(),
+        topSpeed: $('#update_topSpeed').val(),
         imgSrc: $('#update_imgSrc').val(),
         description: $('#update_description').val()
       });
 
-      // Save Instance
+      // Save new Instance
       this.options.car.save();
 
-      // Go back to our home page
+      // Go to home page
       App.router.navigate('', {trigger: true});
 
     },
@@ -56,7 +57,7 @@
       // Remove Car
       this.options.car.destroy();
 
-      // Go home ET
+      // Go home, ET
       App.router.navigate('', {trigger: true});
 
     }

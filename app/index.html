@@ -25,6 +25,13 @@
 
     <div class="cars-list">
       <h1>A list of Cars</h1>
+      <div class="sortBox">
+        <span>Sort by: </span>
+        <span><a href="#/sort/name">Name</a></span>
+        <span><a href="#/sort/make">Make</a></span>
+        <span><a href="#/sort/model">Model</a></span>
+        <span><a href="#/sort/topSpeed">Top Speed</a></span>
+      </div>
       <div id="carContainer"></div>
     </div>
 
@@ -33,6 +40,7 @@
           <span> Car Name: </span><input type="text" id="name"/>
           <span> Car Make: </span><input type="text" id="make" />
           <span> Car Model: </span><input type="text" id="model"/>
+          <span> Top Speed: </span><input type="text" id="topSpeed" />
           <span> Car Image Source: </span><input type="text" id="imgSrc"/>
           <button id="#carAdd">Add the Car</button>
       </form>
@@ -45,6 +53,7 @@
           <li>Name: <%= name %></li>
           <li>Make: <%= make %></li>
           <li>Model: <%= model %></li>
+          <li>Top Speed: <%= topSpeed %></li>
           <li>Description: <%= description %></li>
         </ul>
         <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
@@ -59,6 +68,7 @@
               <input type="text" value="<%= name %>" id="update_name" />
               <input type="text" value="<%= make %>" id="update_make" />
               <input type="text" value="<%= model %>" id="update_model" />
+              <input type="text" value="<%= topSpeed %>" id="update_topSpeed" />
               <input type="text" value="<%= imgSrc %>" id="update_imgSrc" />
               <img src="<%= imgSrc %>"/>
             </div>

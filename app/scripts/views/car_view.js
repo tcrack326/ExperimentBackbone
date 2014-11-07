@@ -11,14 +11,14 @@
 
     template: _.template($('#cars').html()),
 
-    initialize: function () {
+    initialize: function (options) {
+      this.options = options;
       this.render();
-
-      App.all_Cars.off();
-
+      //reset events on the backbone objects
+      this.collection.off();
       //update our view when adding/deleting a car
-      App.all_Cars.on('sync', this.render, this);
-      App.all_Cars.on('destroy', this.render, this);
+      this.collection.on('sync', this.render, this);
+      this.collection.on('destroy', this.render, this);
 
       //Take the data and append it into a specific element on my page
       $('#carContainer').html(this.el);
