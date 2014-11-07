@@ -40,14 +40,35 @@
     </script>
 
     <script type="text/template" id="cars">
-      <li>
+      <li><a href="#/edit/<%= _id %>">
         <ul class="carDetails">
           <li><img src="<%= imgSrc %>"></li>
           <li>Name: <%= name %></li>
           <li>Make: <%= make %></li>
           <li>Model: <%= model %></li>
+          <li>Description: <%= description %></li>
         </ul>
         <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
+        </a>
+      </li>
+    </script>
+
+    <script type="text/template" id="singleCarTemplate">
+      <li id="<%= _id %>">
+        <form id="updateCar">
+            <div>
+              <input type="text" value="<%= name %>" id="update_name" />
+              <input type="text" value="<%= make %>" id="update_make" />
+              <input type="text" value="<%= model %>" id="update_model" />
+              <input type="text" value="<%= imgSrc %>" id="update_imgSrc" />
+              <img src="<%= imgSrc %>"/>
+            </div>
+            <div>
+                <textarea id="update_description"><%= description %></textarea>
+            </div>
+            <button>Update Car Details</button>
+            <button id="delete">Delete</button>
+        </form>
       </li>
     </script>
     <!-- build:js scripts/vendor.js -->
@@ -64,6 +85,8 @@
         <script src="scripts/collections/car_collection.js"></script>
         <script src="scripts/views/car_view.js"></script>
         <script src="scripts/views/add_car_view.js"></script>
+        <script src="scripts/views/single_car_view.js"></script>
+        <script src="scripts/routes/app_router.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>
