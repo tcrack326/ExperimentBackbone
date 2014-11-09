@@ -28,12 +28,28 @@
       //Binding 'this' to 'self' for use in nexted functions/callbacks
       var self = this;
 
-        //Clear our El
-        this.$el.empty();
+      this.$el.empty();
 
-      this.collection.each(function (c) {
-        self.$el.append(self.template(c.toJSON()));
-      });
+      //show the add button
+      $('.addCarButton').show();
+
+      //attempt to sort...
+      if (this.options.sort === undefined) {
+        // Sort from our default comparator in our collection constructor
+        this.collection.sort();
+        this.collection.each(function (car) {
+          self.$el.append(self.template(car.toJSON()));
+        });
+      }
+
+      else {
+        var sortedCollection = this.collection.sortBy( function (model) {
+          return model.get(self.options.sort);
+        });
+        _.each(sortedCollection, function (car) {
+          self.$el.append(self.template(car.toJSON()));
+        })
+      }
 
       return this;
     },

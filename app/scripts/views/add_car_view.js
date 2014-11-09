@@ -2,8 +2,11 @@
 
   App.Views.AddCar = Backbone.View.extend({
 
+    tagName: 'ul',
+    className: 'carAdd',
+
     events: {
-      'click button' : 'addNewCar'
+      'click #addCar' : 'addNewCar'
     },
 
     initialize: function(){
@@ -15,6 +18,7 @@
     render: function() {
       var form = $('#addCars').html();
       this.$el.html(form);
+      $('.addCarButton').hide();
 
     },
 

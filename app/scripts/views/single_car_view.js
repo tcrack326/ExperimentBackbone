@@ -6,7 +6,7 @@
     className: 'carSingle',
 
     events: {
-      'submit #updateCar' : 'updateCar',
+      'click #updateCar' : 'updateCar',
       'click #delete' : 'deleteCar'
     },
 
@@ -33,7 +33,7 @@
     updateCar: function (e) {
       e.preventDefault();
 
-      // Update our Model Instance
+      // Update car
       this.options.car.set({
         name: $('#update_name').val(),
         make: $('#update_make').val(),
