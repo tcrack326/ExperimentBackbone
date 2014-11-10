@@ -42,12 +42,12 @@
     <script type="text/template" id="addCars">
       <li id="<%= _id %>" class="car">
         <ul class="carDetails">
-          <li class="detail">Name: <input type = "text" id="update_name"></input></li>
-          <li class="detail">Make: <input type = "text" id="update_make"></input></li>
-          <li class="detail">Model: <input type = "text" id="update_model"></input></li>
-          <li class="detail">Top Speed: <input type = "text" id="update_topSpeed"></input></li>
-          <li class="detail">Image Source: <input type = "text" id="update_imgSrc"></input></li>
-          <li class="detail">Description: <textarea></textarea></li>
+          <li class="detail">Name: <input type = "text" id="name"></input></li>
+          <li class="detail">Make: <input type = "text" id="make"></input></li>
+          <li class="detail">Model: <input type = "text" id="model"></input></li>
+          <li class="detail">Top Speed: <input type = "text" id="topSpeed"></input></li>
+          <li class="detail">Image Source: <input type = "text" id="imgSrc"></input></li>
+          <li class="detail">Description: <textarea id="description"></textarea></li>
         </ul>
         <button id="addCar">Add New Fast Car</button>
         <button><a id="cancelButton" href="#/">Cancel</a></button>
@@ -76,7 +76,7 @@
             <li class="detail">Make: <input type = "text" id="update_make" value="<%= make %>"></input></li>
             <li class="detail">Model: <input type = "text" id="update_model" value="<%= model %>"></input></li>
             <li class="detail">Top Speed: <input type = "text" id="update_topSpeed" value="<%= topSpeed %>"></input></li>
-            <li class="detail">Description: <textarea><%= description %></textarea></li>
+            <li class="detail">Description: <textarea id="update_description"><%= description %></textarea></li>
             <li class="detail">Image Source: <input type = "text" id="update_imgSrc" value="<%= imgSrc %>"></input></li>
           </ul>
           <button id="updateCar">Update Car Details</button>
