@@ -9,35 +9,72 @@
 
     <link rel="stylesheet" href="styles/vendor.css">
 
+    <link href='http://fonts.googleapis.com/css?family=Racing+Sans+One|Faster+One' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="styles/main.css">
 
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
   <body>
-
-    <div class="cars-list">
-      <h1>A list of Cars</h1>
-      <form id="addCarForm">
-          <span> Car Name: </span><input type="text" id="name"/>
-          <span> Car Make: </span><input type="text" id="make" />
-          <span> Car Model: </span><input type="text" id="model"/>
-          <span> Car Image Source: </span><input type="text" id="imgSrc"/>
-          <button>Add the Car</button>
-      </form>
-      <ul id="coolCars">
-      </ul>
+    <header>
+      <h1>Fast Cars</h1>
+    </header>
+    <div class="sortBox">
+      <span>Sort by: </span>
+      <span><a href="#/sort/name">Name</a></span>
+      <span><a href="#/sort/make">Make</a></span>
+      <span><a href="#/sort/model">Model</a></span>
+      <span><a href="#/sort/topSpeed">Top Speed</a></span>
     </div>
+    <div class="cars-list">
+      <div id="carContainer"></div>
+    </div>
+    <div class="background-container"></div>
+    <div class="addCarButton"><a href="#/add">+</a></div>
 
-    <script type="text/template" id="carTemplate">
-    <li id="<%= _id %>">
-      <ul class="carDetails">
-        <li><img src="<%= imgSrc %>"></li>
-        <li>Name: <%= name %></li>
-        <li>Make: <%= make %></li>
-        <li>Model: <%= model %></li>
-      </ul>
-        <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
+    <script type="text/template" id="addCars">
+      <li id="<%= _id %>" class="car">
+        <ul class="carDetails">
+          <li class="detail">Name: <input type = "text" id="name"></input></li>
+          <li class="detail">Make: <input type = "text" id="make"></input></li>
+          <li class="detail">Model: <input type = "text" id="model"></input></li>
+          <li class="detail">Top Speed: <input type = "text" id="topSpeed"></input></li>
+          <li class="detail">Image Source: <input type = "text" id="imgSrc"></input></li>
+          <li class="detail">Description: <textarea id="description"></textarea></li>
+        </ul>
+        <button id="addCar">Add New Fast Car</button>
+        <button><a id="cancelButton" href="#/">Cancel</a></button>
       </li>
+    </script>
+
+    <script type="text/template" id="cars">
+      <li class="car"><a href="#/edit/<%= _id %>">
+        <ul class="carDetails">
+          <li class="image"><img src="<%= imgSrc %>"></li>
+          <li class="detail">Name: <%= name %></li>
+          <li class="detail">Make: <%= make %></li>
+          <li class="detail">Model: <%= model %></li>
+          <li class="detail">Top Speed: <%= topSpeed %></li>
+          <li class="description"><%= description %></li>
+        </ul>
+        <button id="<%= _id %>" class="removeBtn">Remove the Car</button>
+        </a>
+      </li>
+    </script>
+
+    <script type="text/template" id="singleCarTemplate">
+        <li id="<%= _id %>" class="car">
+          <ul class="carDetails">
+            <li class="detail">Name: <input type = "text" id="update_name" value="<%= name %>"></input></li>
+            <li class="detail">Make: <input type = "text" id="update_make" value="<%= make %>"></input></li>
+            <li class="detail">Model: <input type = "text" id="update_model" value="<%= model %>"></input></li>
+            <li class="detail">Top Speed: <input type = "text" id="update_topSpeed" value="<%= topSpeed %>"></input></li>
+            <li class="detail">Description: <textarea id="update_description"><%= description %></textarea></li>
+            <li class="detail">Image Source: <input type = "text" id="update_imgSrc" value="<%= imgSrc %>"></input></li>
+          </ul>
+          <button id="updateCar">Update Car Details</button>
+          <button><a id="cancelButton" class="cancel" href="#/">Cancel</a></button>
+        </li>
     </script>
     <script src="scripts/vendor.js"></script>
 
